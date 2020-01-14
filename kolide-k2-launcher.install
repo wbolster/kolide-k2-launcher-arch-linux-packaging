@@ -1,0 +1,17 @@
+post_install() {
+    systemctl daemon-reload
+    systemctl enable --now kolide-k2-launcher.service
+}
+
+post_upgrade() {
+    systemctl daemon-reload
+    systemctl try-restart kolide-k2-launcher.service
+}
+
+pre_remove() {
+    systemctl stop kolide-k2-launcher.service
+}
+
+post_remove() {
+    systemctl daemon-reload
+}
